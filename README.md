@@ -4,10 +4,10 @@ URN to URL resolution service for urn:sha1 and urn:sha256 hashes as described in
 
 ## Installation
 
-Create your collections with SHA Keys and URL's from your informationsystems.
-For Example: calculate sha1sum from existing files and put it into your N2L_sha1.txt collection.
-Move the N2L.cgi script and collections directory to cgi-bin directory on your webserver.
-Enable cgi Modul and reload the config on your webserver.
+Create your collections with SHA Keys and URL's from your informationsystems.  
+For Example: calculate sha1sum from existing files and put it into your N2L_sha1.txt collection.  
+Move the N2L.cgi script and collections directory to cgi-bin directory on your webserver.  
+Enable cgi Modul and reload the config on your webserver.  
 
 ## Usage
 
