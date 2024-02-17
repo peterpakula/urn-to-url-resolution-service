@@ -20,10 +20,11 @@ sudo mkdir -p /usr/lib/cgi-bin/urn-res
 sudo mkdir -p /var/lib/urn-res/collections
 ```
 
-Copy the N2L.cgi script to /usr/lib/cgi-bin/urn-res directory.  
+Copy the N2L.cgi script to /usr/lib/cgi-bin/urn-res directory and change the permissions.
 
 ```
 sudo cp N2L.cgi /usr/lib/cgi-bin/urn-res
+sudo chmod 755 /usr/lib/cgi-bin/urn-res/N2L.cgi
 ```
 
 Copy your collections to /var/lib/urn-res/collections  
@@ -33,6 +34,32 @@ sudo cp collections/*.txt /var/lib/urn-res/collections
 ```
 
 Enable cgi Modul and reload the config on your webserver.  
+
+Setup mod_cgi for lighttpd  
+
+Open the lighttpd configuration file and modify config as follows so that support for mod_cgi get loaded:  
+
+```
+vi /etc/lighttpd/lighttpd.conf
+
+include "mod_cgi.conf"
+```
+
+Open the mod_cgi configuration file and modify as follows:  
+
+```
+vi /etc/lighttpd/mod_cgi.conf
+
+$HTTP["url"] =~ "^/cgi-bin/" {
+    cgi.assign = ( ".cgi"  =>      "/bin/bash" )
+}
+```
+
+Restart the lighttpd webserver.  
+
+```
+sudo systemctl restart lighttpd
+```
 
 ## Usage
 
