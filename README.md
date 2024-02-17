@@ -6,12 +6,16 @@ URN to URL resolution service for urn:sha1 and urn:sha256 hashes as described in
 
 To run this cgi script you need bash, grep and cut.  
 
+### Create Collections
+
 Create your collections with SHA Keys and URL's from your informationsystem.  
 The first column in the collection contains a SHA Key.  
 The second column contains a encoded URL to file.  
 The two columns a separated by a single blank.  
 
 Example: 37f6da63887a0efb5c59342b59c4b3afd22494a9f13eaf862362e985ec16ab4b http://localhost/webdav/file3.txt
+
+### Copy cgi script and collections
 
 Create directories  
 
@@ -33,32 +37,30 @@ Copy your collections to /var/lib/urn-res/collections
 sudo cp collections/*.txt /var/lib/urn-res/collections
 ```
 
-Enable cgi Modul and reload the config on your webserver.  
+### Enable cgi Modul and reload the config on your webserver.  
 
-Setup mod_cgi for lighttpd  
+#### Setup mod_cgi for lighttpd  
 
-Open the lighttpd configuration file and modify config as follows so that support for mod_cgi get loaded:  
+Enable mod_cgi:  
 
 ```
-vi /etc/lighttpd/lighttpd.conf
-
-include "mod_cgi.conf"
+sudo lighttpd-enable-mod cgi
 ```
 
 Open the mod_cgi configuration file and modify as follows:  
 
 ```
-vi /etc/lighttpd/mod_cgi.conf
+sudo vi /etc/lighttpd/conf-enabled/10-cgi.conf
 
 $HTTP["url"] =~ "^/cgi-bin/" {
-    cgi.assign = ( ".cgi"  =>      "/bin/bash" )
+    cgi.assign = ( ".cgi" => "/usr/bin/bash", )
 }
 ```
 
-Restart the lighttpd webserver.  
+Reload the lighttpd config.  
 
 ```
-sudo systemctl restart lighttpd
+sudo service lighttpd force-reload
 ```
 
 ## Usage
