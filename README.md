@@ -4,15 +4,35 @@ URN to URL resolution service for urn:sha1 and urn:sha256 hashes as described in
 
 ## Installation
 
-Create your collections with SHA Keys and URL's from your informationsystems.  
-For Example: calculate sha1sum from existing files and put it into your N2L_sha1.txt collection.  
+To run this cgi script you need bash, grep and cut.  
 
-Move the N2L.cgi script and collections directory to cgi-bin directory on your webserver.  
+Create your collections with SHA Keys and URL's from your informationsystem.  
+The first column in the collection contains a SHA Key.  
+The second column contains a encoded URL to file.  
+The two columns a separated by a single blank.  
+
+Example: 37f6da63887a0efb5c59342b59c4b3afd22494a9f13eaf862362e985ec16ab4b http://localhost/webdav/file3.txt
+
+Create directories  
+
+```
+sudo mkdir -p /usr/lib/cgi-bin/urn-res
+sudo mkdir -p /var/lib/urn-res/collections
+```
+
+Move the N2L.cgi script to /usr/lib/cgi-bin/urn-res directory.  
+
+```
+sudo mv N2L.cgi /usr/lib/cgi-bin/urn-res
+```
+
+Copy your collections to /var/lib/urn-res/collections  
+
+```
+sudo cp collections/*.txt /var/lib/urn-res/collections
+```
+
 Enable cgi Modul and reload the config on your webserver.  
-
-### Requirements
-
-To run this cgi script you need bash, grep and cut.
 
 ## Usage
 
@@ -35,7 +55,15 @@ Location: http://localhost/webdav/file1.txt
 
 ## Testing
 
-Run Bash Automated Testing System
+To run Bash Automated Testing System you need bats.
+
+Install bats
+
+```
+sudo apt-get install bats
+```
+
+Run tests
 
 ```
 bats -t -T N2L.bats

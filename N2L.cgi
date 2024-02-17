@@ -6,8 +6,8 @@
 HTTP_CONTENT_TYPE_PLAIN="Content-type: text/plain"
 HTTP_CONTENT_LENGTH="Content-Length: 0"
 HTTP_CONNECTION="Connection: close"
-COLLECTION_SHA1="collections/N2L_sha1.txt"
-COLLECTION_SHA256="collections/N2L_sha256.txt"
+COLLECTION_SHA1="/var/lib/urn-res/collections/N2L_sha1.txt"
+COLLECTION_SHA256="/var/lib/urn-res/collections/N2L_sha256.txt"
 
 # return URL for a given SHA Hash
 fetch () {
@@ -76,7 +76,7 @@ if [ "$REQUEST_METHOD" == "GET" ]; then
 
    URN_SHA_VALUE_LOWER="${URN_SHA_VALUE,,}"
    URN_SHA_VALUE_LENGTH=${#URN_SHA_VALUE_LOWER}
-   if [[ ("$URN_SHA_ALGORITHM" -eq "SHA-1" && "$URN_SHA_VALUE_LENGTH" -eq 40) || ("$URN_SHA_ALGORITHM" -eq "SHA-256" && "$URN_SHA_VALUE_LENGTH" -eq 64) ]]; then
+   if [[ ("$URN_SHA_ALGORITHM" = "SHA-1" && "$URN_SHA_VALUE_LENGTH" -eq 40) || ("$URN_SHA_ALGORITHM" = "SHA-256" && "$URN_SHA_VALUE_LENGTH" -eq 64) ]]; then
       PATH_TO_FILE=$(fetch "$URN_SHA_ALGORITHM" "$URN_SHA_VALUE_LOWER")
       if [ -z "$PATH_TO_FILE" ]; then
          return_with_status 404
