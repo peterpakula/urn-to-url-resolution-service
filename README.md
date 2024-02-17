@@ -52,6 +52,7 @@ Open the mod_cgi configuration file and modify as follows:
 ```
 sudo vi /etc/lighttpd/conf-enabled/10-cgi.conf
 
+cgi.execute-x-only = "enable"
 $HTTP["url"] =~ "^/cgi-bin/" {
     cgi.assign = ( ".cgi" => "/usr/bin/bash", )
 }
