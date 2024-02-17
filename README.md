@@ -20,10 +20,10 @@ sudo mkdir -p /usr/lib/cgi-bin/urn-res
 sudo mkdir -p /var/lib/urn-res/collections
 ```
 
-Move the N2L.cgi script to /usr/lib/cgi-bin/urn-res directory.  
+Copy the N2L.cgi script to /usr/lib/cgi-bin/urn-res directory.  
 
 ```
-sudo mv N2L.cgi /usr/lib/cgi-bin/urn-res
+sudo cp N2L.cgi /usr/lib/cgi-bin/urn-res
 ```
 
 Copy your collections to /var/lib/urn-res/collections  
@@ -55,7 +55,7 @@ Location: http://localhost/webdav/file1.txt
 
 ## Testing
 
-To run Bash Automated Testing System you need bats.
+To run tests you need bats (Bash Automated Testing System).  
 
 Install bats
 
