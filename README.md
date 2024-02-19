@@ -39,7 +39,21 @@ sudo cp collections/*.txt /var/lib/urn-res/collections
 
 ### Enable cgi Modul and reload the config on your webserver.  
 
-#### Setup mod_cgi for lighttpd  
+#### Setup cgi for apache  
+
+Enable cgi:  
+
+```
+sudo a2enmod cgi
+```
+
+Reload the apache config.  
+
+```
+sudo systemctl reload apache2.service
+```
+
+#### Setup cgi for lighttpd  
 
 Enable mod_cgi:  
 
