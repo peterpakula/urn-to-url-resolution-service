@@ -15,6 +15,8 @@ The two columns a separated by a single blank.
 
 Example: 37f6da63887a0efb5c59342b59c4b3afd22494a9f13eaf862362e985ec16ab4b http://localhost/webdav/file3.txt
 
+Create the file N2L_sha1.txt for SHA-1 keys and N2L_sha256.txt for SHA-256 keys.
+
 ### Copy cgi script and collections
 
 Create directories  
@@ -34,7 +36,8 @@ sudo chmod 755 /usr/lib/cgi-bin/urn-res/N2L.cgi
 Copy your collections to /var/lib/urn-res/collections  
 
 ```
-sudo cp collections/*.txt /var/lib/urn-res/collections
+sudo cp collections/N2L_sha1.txt /var/lib/urn-res/collections
+sudo cp collections/N2L_sha256.txt /var/lib/urn-res/collections
 ```
 
 ### Enable cgi Modul and reload the config on your webserver.  
